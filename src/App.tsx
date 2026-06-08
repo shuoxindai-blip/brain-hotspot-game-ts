@@ -8,6 +8,14 @@ import { SkullDiagram } from './components/SkullDiagram'
 import { brainGame } from './data/brainGame'
 import { useHotspotGame } from './hooks/useHotspotGame'
 
+const defaultHubUrl = 'https://anatomy-games-hub-demo.vercel.app/'
+
+function getHubUrl() {
+  if (typeof window === 'undefined') return defaultHubUrl
+
+  return new URLSearchParams(window.location.search).get('hub') ?? defaultHubUrl
+}
+
 const gameConfig = brainGame
 
 function App() {
@@ -15,6 +23,7 @@ function App() {
   const [logOpen, setLogOpen] = useState(false)
   const [reviewOpen, setReviewOpen] = useState(false)
   const logWrapRef = useRef<HTMLDivElement | null>(null)
+  const hubUrl = getHubUrl()
 
   const handleShellClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!logOpen) return
@@ -35,6 +44,20 @@ function App() {
         onClick={handleShellClick}
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,rgba(0,122,255,0.08)_1px,transparent_1px)] bg-[length:30px_30px] opacity-30" />
+        <button
+          className="absolute left-4 top-4 z-[150] flex h-9 w-9 items-center justify-center rounded-full border border-slate-900/8 bg-white/90 text-[1.4rem] font-extrabold leading-none text-[#007AFF] shadow-[0_10px_24px_rgba(15,23,42,0.10)] backdrop-blur"
+          type="button"
+          aria-label="Back to games"
+          onPointerDown={(event) => {
+            event.stopPropagation()
+            window.location.assign(hubUrl)
+          }}
+          onClick={(event) => {
+            event.stopPropagation()
+          }}
+        >
+          &lt;
+        </button>
         <HudBar title={gameConfig.title} timerText={gameState.timerText} score={gameState.score} remaining={gameState.remaining} />
 
         <section
