@@ -26,7 +26,7 @@ export function QuizPanel({ state, logOpen, onToggleLog }: QuizPanelProps) {
       </div>
       <div
         className={cn(
-          'absolute bottom-[clamp(68px,9svh,78px)] left-2.5 z-30 min-h-[clamp(40px,5.2svh,44px)] w-[calc(100%-20px)] rounded-[14px] border p-3 text-sm leading-[1.3] shadow-[0_8px_20px_rgba(15,23,42,0.06)]',
+          'absolute bottom-[clamp(78px,10svh,88px)] left-2.5 z-30 min-h-[clamp(40px,5.2svh,44px)] w-[calc(100%-20px)] rounded-[14px] border p-3 text-sm leading-[1.3] shadow-[0_8px_20px_rgba(15,23,42,0.06)]',
           state.feedbackTone === 'positive' && 'border-[#34C759] bg-[#EAF8EF] text-[#167A35]',
           state.feedbackTone === 'negative' && 'border-[#FF3B30] bg-[#FFF0EF] text-[#B42318]',
           state.feedbackTone === 'default' && 'border-slate-200 bg-white text-slate-500',
@@ -34,7 +34,7 @@ export function QuizPanel({ state, logOpen, onToggleLog }: QuizPanelProps) {
       >
         {state.feedback}
       </div>
-      <div className="absolute bottom-[clamp(8px,1.3svh,10px)] left-2.5 right-2.5 z-30 flex justify-end gap-[clamp(8px,2.4vw,10px)]">
+      <div className="absolute bottom-[clamp(18px,2.4svh,22px)] left-2.5 right-2.5 z-30 flex justify-end gap-[clamp(8px,2.4vw,10px)]">
         <GameButton variant="compact" onClick={onToggleLog}>
           {`Log (${state.answerLog.length})`}
         </GameButton>
